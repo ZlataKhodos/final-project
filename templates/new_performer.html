@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Новий студент</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+        div.register-form {
+            border-radius: 20px;
+        }
+        .note
+{
+    text-align: center;
+    height: 80px;
+    background: -webkit-linear-gradient(left, #000000, #a9a4a7);
+    color: #fff;
+    font-weight: bold;
+    line-height: 80px;
+}
+.form-content
+{
+    alignment: center;
+    padding: 5%;
+    border: 1px solid #ced4da;
+    margin-bottom: 2%;
+}
+.form-control{
+    border-radius:1.5rem;
+}
+.btnSubmit
+{
+    margin-left: 70%;
+    border:none;
+    border-radius:1.5rem;
+    padding: 1%;
+    width: 30%;
+    cursor: pointer;
+    background: #31302f;
+    color: #fff;
+}
+    </style>
+</head>
+<body>
+
+<div class="container register-form col-md-6">
+    <div class="form">
+                <div class="note">
+
+                    <p>{{form_name}}</p>
+                </div>
+<form class="form"  action = "/{{action}}" method = post >
+                <div class="form-content">
+                    <div class="row">
+                        <div class="col-md-12">
+    {{ form.hidden_tag() }}
+
+
+                <div class="form-group">
+                    {{ form.name.label }}
+                    {{ form.name(class_="form-control") }}
+
+                    {% if form.name.errors%}
+                    <div class="alert alert-danger" role="alert">
+                        {% for message in form.name.errors %}
+                        <div>{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                    {%endif%}
+                </div>
+
+                        </div>
+                    </div>
+                    {{ form.submit(class_="btn btnSubmit") }}
+                <br>
+                      {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+      {% endif %}
+                </div>
+</form>
+            </div>
+        </div>
+
+</body>
+</html>

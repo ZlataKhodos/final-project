@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web page</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <style>
+        body {
+        font-family: "Lato", sans-serif;
+    }
+
+    .main-head{
+        height: 150px;
+        background: #FFF;
+
+    }
+
+    .sidenav {
+        height: 100%;
+        background-color: #000;
+        overflow-x: hidden;
+        padding-top: 20px;
+    }
+
+
+    .main {
+        padding: 0px 10px;
+    }
+
+    @media screen and (max-height: 450px) {
+        .sidenav {padding-top: 15px;}
+    }
+
+    @media screen and (max-width: 450px) {
+        .login-form{
+            margin-top: 10%;
+        }
+
+        .register-form{
+            margin-top: 10%;
+        }
+    }
+
+    @media screen and (min-width: 768px){
+        .main{
+            margin-left: 40%;
+        }
+
+        .sidenav{
+            width: 40%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+        }
+
+        .login-form{
+            margin-top: 50%;
+        }
+
+        .register-form{
+            margin-top: 20%;
+        }
+    }
+
+
+    .login-main-text{
+        margin-top: 20%;
+        padding: 60px;
+        color: #fff;
+    }
+
+    .login-main-text h2{
+        font-weight: 300;
+    }
+
+    .btn-black{
+        background-color: #000 !important;
+        color: #fff;
+    }
+    </style>
+</head>
+<body>
+    <div class="sidenav">
+         <div class="login-main-text">
+            <h2>Вибір мелодій на Радіо КПІ<br> на основі побажань студентів</h2><br>
+            <p>Авторизуйтесь або зареєструйтесь, щоб замовити пісню</p>
+         </div>
+      </div>
+      <div class="main">
+         <div class="col-md-6 col-sm-12">
+            <div class="login-form">
+               <form action="/{{ action }}" method=post>
+                {{ form.hidden_tag() }}
+
+
+                <div class="form-group">
+                    {{ form.login.label }}
+                    {{ form.login(class_="form-control", placeholder="Розпочніть із символу @") }}
+
+                    {% if form.login.errors%}
+                    <div class="alert alert-danger" role="alert">
+                        {% for message in form.login.errors %}
+                        <div>{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                    {%endif%}
+                </div>
+
+                <div class="form-group">
+                    {{ form.password.label }}
+                    {{ form.password(class_="form-control", placeholder="Пароль") }}
+
+                    {% if form.password.errors%}
+                    <div class="alert alert-danger" role="alert">
+                        {% for message in form.password.errors %}
+                        <div>{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                    {%endif%}
+                </div>
+
+               {{ form.submit(class_="btn btn-black") }}
+               </form> <br>
+            <div style="margin-top: -16.8%; margin-left: 25%"><form action="/signup">
+              <button type="submit" class="btn btn-secondary">Зареєструватись</button>
+         </form>
+            {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+      {% endif %}
+            </div>
+            </div>
+
+         </div>
+      </div>
+</body>
+</html>
